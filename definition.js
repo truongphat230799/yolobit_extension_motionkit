@@ -66,7 +66,7 @@ Blockly.Blocks['motionkit_stop'] = {
           name: "pin",
           options: [
             [Blockly.Msg.BLOCK_MOTIONKIT_STOP, "mk.stop()\n"],
-            [Blockly.Msg.BLOCK_MOTIONKIT_BRAKE, "mk.brake()n"],
+            [Blockly.Msg.BLOCK_MOTIONKIT_BRAKE, "mk.brake()\n"],
           ],
         }
         ],
