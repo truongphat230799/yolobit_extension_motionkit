@@ -1,4 +1,4 @@
-const StemKitColorBlock = '#44cbc6';
+const StemKitColorBlock = '#717171';
 const ImgUrl = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_stem_starterkit/images/';
 
 Blockly.Blocks['motionkit_move_motor'] = {
