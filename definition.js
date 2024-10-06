@@ -1,4 +1,4 @@
-const StemKitColorBlock = '#717171';
+const StemKitColorBlock = '#e65722';
 const ImgUrl = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_stem_starterkit/images/';
 
 Blockly.Blocks['motionkit_move_motor'] = {
@@ -65,8 +65,17 @@ Blockly.Blocks['motionkit_stop'] = {
           "type": "field_dropdown",
           "name": "action",
           "options": [
-            [Blockly.Msg.BLOCK_MOTIONKIT_STOP, "mk.stop()\n"],
-            [Blockly.Msg.BLOCK_MOTIONKIT_BRAKE, "mk.brake()\n"],
+            [Blockly.Msg.BLOCK_MOTIONKIT_STOP, ".stop("],
+            [Blockly.Msg.BLOCK_MOTIONKIT_BRAKE, ".brake("],
+          ],
+        },
+        {
+          "type": "field_dropdown",
+          "name": "pin",
+          "options": [
+            ["M1", "1"],
+            ["M2", "2"],
+            [Blockly.Msg.BLOCK_MOTIONKIT_ALL_MOTOR, "3"],
           ],
         }
         ],
@@ -81,8 +90,9 @@ Blockly.Blocks['motionkit_stop'] = {
 Blockly.Python["motionkit_stop"] = function (block) {
   Blockly.Python.definitions_['import_motionkit_motor'] = 'from motion_kit import *';
   var dropdown_action = block.getFieldValue('action');
+  var dropdown_pin = block.getFieldValue('pin');
   // TODO: Assemble Python into code variable.
-  var code = dropdown_action;
+  var code = "mk" + dropdown_action + dropdown_pin +")\n";
   return code;
 };
 
