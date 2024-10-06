@@ -62,9 +62,9 @@ Blockly.Blocks['motionkit_stop'] = {
           "flipRtl": false
         },
         {
-          type: "field_dropdown",
-          name: "pin",
-          options: [
+          "type": "field_dropdown",
+          "name": "action",
+          "options": [
             [Blockly.Msg.BLOCK_MOTIONKIT_STOP, "mk.stop()\n"],
             [Blockly.Msg.BLOCK_MOTIONKIT_BRAKE, "mk.brake()\n"],
           ],
@@ -80,7 +80,7 @@ Blockly.Blocks['motionkit_stop'] = {
 
 Blockly.Python["motionkit_stop"] = function (block) {
   Blockly.Python.definitions_['import_motionkit_motor'] = 'from motion_kit import *';
-  var dropdown_action = block.getFieldValue('pin');
+  var dropdown_action = block.getFieldValue('action');
   // TODO: Assemble Python into code variable.
   var code = dropdown_action;
   return code;
