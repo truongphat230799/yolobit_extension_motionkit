@@ -1,9 +1,8 @@
-Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_MESSAGE0 = "%3 Động cơ M1 %1 M2 %2"
-Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_TOOLTIP = "Điều khiển tốc độ quay động cơ M1 và M2"
+Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_MESSAGE0 = "%3 %4 %1 %2"
+Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_TOOLTIP = "Điều khiển tốc độ quay động cơ"
 
 Blockly.Msg.BLOCK_MOTIONKIT_STOP_MESSAGE0 = "%1 %3 dừng %2"
-Blockly.Msg.BLOCK_MOTIONKIT_STOP_TOOLTIP = "Dừng quay tất cả động cơ"
-Blockly.Msg.BLOCK_MOTIONKIT_ALL_MOTOR = "Tất cả"
+Blockly.Msg.BLOCK_MOTIONKIT_STOP_TOOLTIP = "Dừng quay động cơ tương ứng"
 
 Blockly.Msg.BLOCK_MOTIONKIT_STOP = "lại"
 Blockly.Msg.BLOCK_MOTIONKIT_BRAKE = "và khóa bánh"

@@ -11,12 +11,7 @@ Blockly.Blocks['motionkit_move_motor'] = {
         "args0": [
           {
             "type": "input_value",
-            "name": "left_wheel_speed",
-            "check": "Number",
-          },
-          {
-            "type": "input_value",
-            "name": "right_wheel_speed",
+            "name": "wheel_speed",
             "check": "Number",
           },
           {
@@ -26,6 +21,15 @@ Blockly.Blocks['motionkit_move_motor'] = {
             "height": 30,
             "alt": "*",
             "flipRtl": false
+          },
+          {
+            "type": "field_dropdown",
+            "name": "pin",
+            "options": [
+              ["M1", "1"],
+              ["M2", "2"],
+              ["M1 + M2", "3"],
+            ],
           }
         ],
         "inputsInline": true,
@@ -39,10 +43,10 @@ Blockly.Blocks['motionkit_move_motor'] = {
 
 Blockly.Python["motionkit_move_motor"] = function (block) {
   Blockly.Python.definitions_['import_motion_kit_motor'] = 'from motion_kit import *';
-  var left_wheel_speed = Blockly.Python.valueToCode(block, 'left_wheel_speed', Blockly.Python.ORDER_ATOMIC);
-  var right_wheel_speed = Blockly.Python.valueToCode(block, 'right_wheel_speed', Blockly.Python.ORDER_ATOMIC);
+  var wheel_speed = Blockly.Python.valueToCode(block, 'wheel_speed', Blockly.Python.ORDER_ATOMIC);
+  var dropdown_pin = block.getFieldValue('pin');
   // TODO: Assemble Python into code variable.
-  var code = "mk.set_motors(1, " + left_wheel_speed + ")\n" + "mk.set_motors(2, " + right_wheel_speed + ")\n";
+  var code = "mk.set_motors(" + dropdown_pin + ", " + wheel_speed + ")\n";
   return code;
 };
 
@@ -75,7 +79,7 @@ Blockly.Blocks['motionkit_stop'] = {
           "options": [
             ["M1", "1"],
             ["M2", "2"],
-            [Blockly.Msg.BLOCK_MOTIONKIT_ALL_MOTOR, "3"],
+            ["M1 + M2", "3"],
           ],
         }
         ],
