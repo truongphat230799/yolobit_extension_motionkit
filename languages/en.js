@@ -1,5 +1,5 @@
 
-Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_MESSAGE0 = "%3 M1 %1 M2 %2 (-100:100)"
+Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_MESSAGE0 = "%3 Motor M1 run %1 M2 %2 (-100:100)"
 Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_TOOLTIP = "Run motors M1 and M2 with given speeds"
 
 Blockly.Msg.BLOCK_MOTIONKIT_STOP_MESSAGE0 = "%1 stop and %2"
