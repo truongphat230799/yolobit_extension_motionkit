@@ -1,4 +1,4 @@
-Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_MESSAGE0 = "%3 %4 %1 %2"
+Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_MESSAGE0 = "%2 %3 %1"
 Blockly.Msg.BLOCK_MOTIONKIT_MOVE_MOTOR_TOOLTIP = "Điều khiển tốc độ quay động cơ"
 
 Blockly.Msg.BLOCK_MOTIONKIT_STOP_MESSAGE0 = "%1 %3 dừng %2"
