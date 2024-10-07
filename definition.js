@@ -129,6 +129,8 @@ Blockly.Blocks["motionkit_servo_write_angle"] = {
           "flipRtl": false
         },
         { type: "input_value", name: "speed", check: "Number" },
+        {type: "input_dummy"},
+        {type: "input_dummy"},
       ],
       helpUrl: null,
     });
