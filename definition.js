@@ -155,11 +155,15 @@ Blockly.Blocks["motionkit_servo_micro_angle"] = {
       tooltip: Blockly.Msg.BLOCK_MOTIONKIT_SERVO_WRITE_MICRO_TOOLTIP,
       previousStatement: null,
       args0: [
-        { type: "input_value", name: "angle", check: "Number" },
         {
-          type: "field_dropdown",
-          name: "pin",
-          options: [
+          "type": "input_value",
+          "name": "angle",
+          "check": "Number"
+        },
+        {
+          "type": "field_dropdown",
+          "name": "pin",
+          "options": [
             ["MS1", "1"],
             ["MS2", "2"],
             ["MS3", "3"],
