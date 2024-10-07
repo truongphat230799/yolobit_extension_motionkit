@@ -127,7 +127,8 @@ Blockly.Blocks["motionkit_servo_write_angle"] = {
           "height": 30,
           "alt": "*",
           "flipRtl": false
-        }
+        },
+        { type: "input_value", name: "speed", check: "Number" },
       ],
       helpUrl: null,
     });
@@ -135,6 +136,49 @@ Blockly.Blocks["motionkit_servo_write_angle"] = {
 };
 
 Blockly.Python['motionkit_servo_write_angle'] = function (block) {
+  Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+  var value_output = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
+  var dropdown_pin = block.getFieldValue('pin');
+  return code = 'mk.set_servo('+ dropdown_pin + ',' + value_output + ')\n';
+  
+};
+
+
+Blockly.Blocks["motionkit_servo_micro_angle"] = {
+  init: function () {
+    this.jsonInit({
+      colour: StemKitColorBlock,
+      nextStatement: null,
+      message0: Blockly.Msg.BLOCK_MOTIONKIT_SERVO_WRITE_MICRO_MESSAGE0,
+      tooltip: Blockly.Msg.BLOCK_MOTIONKIT_SERVO_WRITE_MICRO_TOOLTIP,
+      previousStatement: null,
+      args0: [
+        { type: "input_value", name: "angle", check: "Number" },
+        {
+          type: "field_dropdown",
+          name: "pin",
+          options: [
+            ["MS1", "1"],
+            ["MS2", "2"],
+            ["MS3", "3"],
+            ["MS4", "4"],
+          ],
+        },
+        {
+          "type": "field_image",
+          "src": ImgUrl + 'servo.png',
+          "width": 30,
+          "height": 30,
+          "alt": "*",
+          "flipRtl": false
+        },
+      ],
+      helpUrl: null,
+    });
+  },
+};
+
+Blockly.Python['motionkit_servo_micro_angle'] = function (block) {
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
   var value_output = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
