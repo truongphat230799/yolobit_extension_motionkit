@@ -177,7 +177,8 @@ Blockly.Blocks["motionkit_servo_micro_angle"] = {
           "height": 30,
           "alt": "*",
           "flipRtl": false
-        },
+        },        
+        {type: "input_dummy"},
       ],
       helpUrl: null,
     });

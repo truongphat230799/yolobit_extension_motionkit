@@ -2,7 +2,7 @@
     "name": "MOTION KIT",
     "description": "Mục mở rộng dành cho bộ Motion kit",
     "libs": [
-        "miton_kit.py"
+        "motion_kit.py"
     ],
     "blocks": [
         "definition.js"
