@@ -1,5 +1,8 @@
 from micropython import const
 from machine import SoftI2C, Pin
+from yolobit import *
+
+robocon_servos_pos = {}
 
 MK_DEFAULT_I2C_ADDRESS = 0x55
 
@@ -45,7 +48,7 @@ class MotionKit():
             raise RuntimeError("Motion kit module not found. Expected: " + str(address) + ", scanned: " + str(who_am_i))
         else:
             print(who_am_i)
-            self.set_motors(MOTOR_ALL, 0)
+            self.set_motors(MK_MOTOR_ALL, 0)
       
     def fw_version(self):
         minor = self._read_8(MK_REG_FW_VERSION)
@@ -66,6 +69,38 @@ class MotionKit():
     def set_servo(self, index, angle, max=180):
         angle = int(angle*180/max)
         self._write_16(MK_REG_SERVOS[index], angle)
+        robocon_servos_pos[index] = angle
+
+    def set_servo_position(pin, next_position, speed=70):        
+        if speed < 0:
+            speed = 0
+        elif speed > 100:
+            speed = 100
+        
+        sleep = int(translate(speed, 0, 100, 100, 0))
+
+        if pin in robocon_servos_pos:
+            current_position = robocon_servos_pos[index]
+        else:
+            current_position = 0
+            set_servo(pin, 0) # first time control
+
+        if next_position < current_position:
+            for i in range(current_position, next_position, -1):
+                set_servo(index, i)
+                time.sleep_ms(sleep)
+        else:
+            for i in range(current_position, next_position):
+                set_servo(index, i)
+                time.sleep_ms(sleep)
+
+    def move_servo_position(pin, angle):
+        if pin in robocon_servos_pos:
+            current_position = robocon_servos_pos[index]
+        else:
+            current_position = 0
+        next_position = current_position + angle    
+        set_servo(index, next_position)
 
     #################### I2C COMMANDS ####################
 

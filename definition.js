@@ -1,5 +1,5 @@
 const StemKitColorBlock = '#e65722';
-const ImgUrl = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_stem_starterkit/images/';
+const ImgUrl = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_motion_kit/images/';
 
 Blockly.Blocks['motionkit_move_motor'] = {
   init: function () {
@@ -140,8 +140,9 @@ Blockly.Blocks["motionkit_servo_write_angle"] = {
 Blockly.Python['motionkit_servo_write_angle'] = function (block) {
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
   var value_output = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
+  var value_speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
-  return code = 'mk.set_servo('+ dropdown_pin + ',' + value_output + ')\n';
+  return code = "mk.set_servo_position("+ dropdown_pin + "," + value_output +", "+ value_speed+ ")\n";
   
 };
 
@@ -189,7 +190,7 @@ Blockly.Python['motionkit_servo_micro_angle'] = function (block) {
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
   var value_output = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
-  return code = 'mk.set_servo('+ dropdown_pin + ',' + value_output + ')\n';
+  return code = "mk.move_servo_position("+ dropdown_pin + "," + value_output + ")\n";
   
 };
 
@@ -238,5 +239,5 @@ Blockly.Python['motionkit_servo360_write'] = function (block) {
   Blockly.Python.definitions_['import_motionkit'] = 'from motion_kit import *';
   var value_output = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
-  return code = 'mk.set_servo('+ dropdown_pin + ',' + value_output + ')\n';
+  return code = "mk.set_servo("+ dropdown_pin + "," + value_output + ")\n";
 };
