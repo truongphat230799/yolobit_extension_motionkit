@@ -42,6 +42,7 @@ Blockly.Blocks['motionkit_move_motor'] = {
 };
 
 Blockly.Python["motionkit_move_motor"] = function (block) {
+  Blockly.Python.definitions_['import_yolo'] = 'from yolobit import *';
   Blockly.Python.definitions_['import_motion_kit_motor'] = 'from motion_kit import *';
   var wheel_speed = Blockly.Python.valueToCode(block, 'wheel_speed', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
@@ -92,7 +93,8 @@ Blockly.Blocks['motionkit_stop'] = {
 };
 
 Blockly.Python["motionkit_stop"] = function (block) {
-  Blockly.Python.definitions_['import_motionkit_motor'] = 'from motion_kit import *';
+  Blockly.Python.definitions_['import_yolo'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_motion_kit_motor'] = 'from motion_kit import *';
   var dropdown_action = block.getFieldValue('action');
   var dropdown_pin = block.getFieldValue('pin');
   // TODO: Assemble Python into code variable.
@@ -114,10 +116,10 @@ Blockly.Blocks["motionkit_servo_write_angle"] = {
           type: "field_dropdown",
           name: "pin",
           options: [
-            ["MS1", "1"],
-            ["MS2", "2"],
-            ["MS3", "3"],
-            ["MS4", "4"],
+            ["MS1", "0"],
+            ["MS2", "1"],
+            ["MS3", "2"],
+            ["MS4", "3"],
           ],
         },
         {
@@ -138,7 +140,8 @@ Blockly.Blocks["motionkit_servo_write_angle"] = {
 };
 
 Blockly.Python['motionkit_servo_write_angle'] = function (block) {
-  Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_yolo'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_motion_kit_motor'] = 'from motion_kit import *';
   var value_output = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   var value_speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
@@ -166,10 +169,10 @@ Blockly.Blocks["motionkit_servo_micro_angle"] = {
           "type": "field_dropdown",
           "name": "pin",
           "options": [
-            ["MS1", "1"],
-            ["MS2", "2"],
-            ["MS3", "3"],
-            ["MS4", "4"],
+            ["MS1", "0"],
+            ["MS2", "1"],
+            ["MS3", "2"],
+            ["MS4", "3"],
           ],
         },
         {
@@ -188,7 +191,8 @@ Blockly.Blocks["motionkit_servo_micro_angle"] = {
 };
 
 Blockly.Python['motionkit_servo_micro_angle'] = function (block) {
-  Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_yolo'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_motion_kit_motor'] = 'from motion_kit import *';
   var value_output = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
   var code = "mk.move_servo_position("+ dropdown_pin + "," + value_output + ")\n";
@@ -208,10 +212,10 @@ Blockly.Blocks['motionkit_servo360_write'] = {
             type: "field_dropdown",
             name: "pin",
             options: [
-              ["MS1", "1"],
-              ["MS2", "2"],
-              ["MS3", "3"],
-              ["MS4", "4"],
+              ["MS1", "0"],
+              ["MS2", "1"],
+              ["MS3", "2"],
+              ["MS4", "3"],
             ],
           },
           {
@@ -238,7 +242,8 @@ Blockly.Blocks['motionkit_servo360_write'] = {
 };
 
 Blockly.Python['motionkit_servo360_write'] = function (block) {
-  Blockly.Python.definitions_['import_motionkit'] = 'from motion_kit import *';
+  Blockly.Python.definitions_['import_yolo'] = 'from yolobit import *';
+  Blockly.Python.definitions_['import_motion_kit_motor'] = 'from motion_kit import *';
   var value_output = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
   var dropdown_pin = block.getFieldValue('pin');
   var code = "mk.set_servo("+ dropdown_pin + "," + value_output + ")\n";

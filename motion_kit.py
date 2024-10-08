@@ -48,7 +48,8 @@ class MotionKit():
             raise RuntimeError("Motion kit module not found. Expected: " + str(address) + ", scanned: " + str(who_am_i))
         else:
             print(who_am_i)
-            self.set_motors(MK_MOTOR_ALL, 0)
+            self.set_motors(MK_MOTOR_ALL, 0)          
+            self.robocon_servos_pos = {}
       
     def fw_version(self):
         minor = self._read_8(MK_REG_FW_VERSION)
@@ -66,12 +67,12 @@ class MotionKit():
     def brake(self, motors=MK_MOTOR_ALL):
         self._write_8(MK_REG_MOTOR_BRAKE, motors)
 
-    def set_servo(self, index, angle, max=180):
-        angle = int(angle*180/max)
+    def set_servo(self, index, angle):
+        angle = int(angle*180/180)
         self._write_16(MK_REG_SERVOS[index], angle)
-        robocon_servos_pos[index] = angle
+        self.robocon_servos_pos[index] = angle
 
-    def set_servo_position(pin, next_position, speed=70):        
+    def set_servo_position(self, pin, next_position, speed=70):        
         if speed < 0:
             speed = 0
         elif speed > 100:
@@ -80,27 +81,27 @@ class MotionKit():
         sleep = int(translate(speed, 0, 100, 100, 0))
 
         if pin in robocon_servos_pos:
-            current_position = robocon_servos_pos[index]
+            current_position = self.robocon_servos_pos[pin]
         else:
             current_position = 0
-            set_servo(pin, 0) # first time control
+            self.set_servo(pin, 0) # first time control
 
         if next_position < current_position:
             for i in range(current_position, next_position, -1):
-                set_servo(index, i)
+                self.set_servo(pin, i)
                 time.sleep_ms(sleep)
         else:
             for i in range(current_position, next_position):
-                set_servo(index, i)
+                self.set_servo(pin, i)
                 time.sleep_ms(sleep)
 
-    def move_servo_position(pin, angle):
-        if pin in robocon_servos_pos:
-            current_position = robocon_servos_pos[index]
+    def move_servo_position(self, pin, angle):
+        if pin in self.robocon_servos_pos:
+            current_position = self.robocon_servos_pos[pin]
         else:
             current_position = 0
-        next_position = current_position + angle    
-        set_servo(index, next_position)
+        next_position = current_position + angle
+        self.set_servo(pin, next_position)
 
     #################### I2C COMMANDS ####################
 
