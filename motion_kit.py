@@ -101,6 +101,10 @@ class MotionKit():
         else:
             current_position = 0
         next_position = current_position + angle
+        if next_position < 0:
+            next_position = 0
+        if next_position > 180:
+            next_position = 180
         self.set_servo(pin, next_position)
 
     #################### I2C COMMANDS ####################
