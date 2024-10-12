@@ -26,8 +26,8 @@ Blockly.Blocks['motionkit_move_motor'] = {
             "type": "field_dropdown",
             "name": "pin",
             "options": [
-              ["M1", "1"],
-              ["M2", "2"],
+              ["M1", "2"],
+              ["M2", "1"],
               ["M1 + M2", "3"],
             ],
           }
@@ -78,8 +78,8 @@ Blockly.Blocks['motionkit_stop'] = {
           "type": "field_dropdown",
           "name": "pin",
           "options": [
-            ["M1", "1"],
-            ["M2", "2"],
+            ["M1", "2"],
+            ["M2", "1"],
             ["M1 + M2", "3"],
           ],
         }

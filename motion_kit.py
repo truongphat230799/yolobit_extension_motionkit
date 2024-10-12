@@ -2,9 +2,9 @@ from micropython import const
 from machine import SoftI2C, Pin
 from yolobit import *
 
-robocon_servos_pos = {}
+motion_servos_pos = {}
 
-MK_DEFAULT_I2C_ADDRESS = 0x55
+MK_DEFAULT_I2C_ADDRESS = 0x35
 
 MK_REG_MOTOR_INDEX = const(0) # set motor speed - motor index
 MK_REG_MOTOR_SPEED = const(2) # set motor speed - speed
@@ -49,7 +49,7 @@ class MotionKit():
         else:
             print(who_am_i)
             self.set_motors(MK_MOTOR_ALL, 0)          
-            self.robocon_servos_pos = {}
+            self.motion_servos_pos = {}
       
     def fw_version(self):
         minor = self._read_8(MK_REG_FW_VERSION)
@@ -70,7 +70,7 @@ class MotionKit():
     def set_servo(self, index, angle):
         angle = int(angle*180/180)
         self._write_16(MK_REG_SERVOS[index], angle)
-        self.robocon_servos_pos[index] = angle
+        self.motion_servos_pos[index] = angle
 
     def set_servo_position(self, pin, next_position, speed=70):        
         if speed < 0:
@@ -80,8 +80,8 @@ class MotionKit():
         
         sleep = int(translate(speed, 0, 100, 100, 0))
 
-        if pin in robocon_servos_pos:
-            current_position = self.robocon_servos_pos[pin]
+        if pin in motion_servos_pos:
+            current_position = self.motion_servos_pos[pin]
         else:
             current_position = 0
             self.set_servo(pin, 0) # first time control
@@ -96,8 +96,8 @@ class MotionKit():
                 time.sleep_ms(sleep)
 
     def move_servo_position(self, pin, angle):
-        if pin in self.robocon_servos_pos:
-            current_position = self.robocon_servos_pos[pin]
+        if pin in self.motion_servos_pos:
+            current_position = self.motion_servos_pos[pin]
         else:
             current_position = 0
         next_position = current_position + angle
@@ -172,24 +172,3 @@ class MotionKit():
                 result_array[i] = raw
 
 mk = MotionKit()
-'''
-# unit test code
-
-while True:
-  mk.set_motors(MOTOR_ALL, 100)
-  for i in range(4):
-    mk.set_servo(i, 0)
-  time.sleep(2)
-  mk.brake(MOTOR_ALL)
-  time.sleep(1)
-  mk.set_motors(MOTOR_ALL, 0)
-  time.sleep(2)
-  mk.set_motors(MOTOR_ALL, -100)
-  for i in range(4):
-    mk.set_servo(i, 180)
-  time.sleep(2)
-  mk.brake(MOTOR_ALL)
-  time.sleep(1)
-  mk.set_motors(MOTOR_ALL, 0)
-  time.sleep(2)
- '''
