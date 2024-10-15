@@ -80,7 +80,7 @@ class MotionKit():
         
         sleep = int(translate(speed, 0, 100, 100, 0))
 
-        if pin in motion_servos_pos:
+        if pin in self.motion_servos_pos:
             current_position = self.motion_servos_pos[pin]
         else:
             current_position = 0
@@ -172,3 +172,4 @@ class MotionKit():
                 result_array[i] = raw
 
 mk = MotionKit()
+
